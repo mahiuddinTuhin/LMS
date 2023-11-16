@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 require("dotenv").config();
 
+import ErrorHandler from "./middleware/error";
+
 /*  body parser */
 const app = express();
 
@@ -33,5 +35,7 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
   err.statusCode = 404;
   next(err);
 });
+
+app.use(ErrorHandler);
 
 export default app;
